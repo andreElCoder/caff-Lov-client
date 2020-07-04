@@ -47,7 +47,7 @@ class App extends Component {
         <Switch>
           <Route path='/login' render={(props) => <Login setCurrentUser={this.setCurrentUser} {...props} /> } />
           <Route path='/signup' render={(props) => <Signup setCurrentUser={this.setCurrentUser} {...props} /> } />
-          <Route path='/profile' render={(props) => <Profile username={this.state.loggedInUser}{...props}/>}/>
+          <Route path='/profile' render={(props) => this.state.loggedInUser ? <Profile username={this.state.loggedInUser}{...props} /> :<h1>...</h1>}/>
         </Switch>
       </div>
     );
