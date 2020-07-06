@@ -23,6 +23,7 @@ class Profile extends Component{
     }
 
     refreshCoffees = (newCoffee) =>{
+        console.log(newCoffee)
         const newCoffees = this.state.coffees
         newCoffees.unshift(newCoffee)
         this.setState({
@@ -50,8 +51,9 @@ class Profile extends Component{
                         {this.state.addButton && <AddCoffee lifUpCoffee={this.refreshCoffees} />}
                     </div>
                     <div>
-                        {this.state.coffees.map((coffee) =>{
+                        {this.state.coffees.map((coffee) =>{console.log(coffee)
                             return(
+                                
                             <CoffeeCard coffee={coffee} key={coffee._id}/>) 
                             })}
                     </div>

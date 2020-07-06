@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
+import Rating from "react-rating"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {Button} from "react-bootstrap"
 
 class Editcoffee extends Component {
 
@@ -8,11 +12,23 @@ class Editcoffee extends Component {
         description:"",
         url:"",
         rating:0,
+        coffeEddited:false
     }
 
     componentDidMount() {
-        //Make call to the API
-        //Set the state with the response
+        const { params } = this.props.match;
+        axios
+        .get(`http://localhost:5000/api/coffee-detail/${params.id}`)
+        .then(responseFromAPI =>{
+            console.log(responseFromAPI)
+            const{name,description,url,rating} = responseFromAPI.data
+            this.setState({
+                name,
+                description,
+                url,
+                rating
+            })
+        })
     }
 
     handleChange = (event) => {
@@ -22,11 +38,21 @@ class Editcoffee extends Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        const { title, description,url,rating } = this.state;
+        const { name, description,url,rating } = this.state;
         const { params } = this.props.match;
-        axios.put(`http://localhost:5000/api/edit-coffee/${params.id}`, { title, description,url,rating} )
+        axios.put(`http://localhost:5000/api/edit-coffee/${params.id}`, { name, description,url,rating} )
             .then(() => {
-                this.props.history.push('/coffees');
+                this.setState({coffeEddited:true})
+                setTimeout(()=>{
+                    this.props.history.push('/profile')
+                    this.setState({
+                        name:"",
+                        description:"",
+                        url:"",
+                        rating:0,
+                        coffeEddited:false
+                    })
+                },1000);
             });
     }
 
@@ -46,8 +72,8 @@ class Editcoffee extends Component {
                         emptySymbol={<FontAwesomeIcon icon={faCoffee} color="gray"/>}
                         fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
                     />
-                    <Button onClick={this.handleFormSubmit}>Add it</Button>
-                    {this.state.coffeAdded && <h3>☕ Coffe Edited ☕</h3>}
+                    <Button onClick={this.handleFormSubmit}>Update it</Button>
+                    {this.state.coffeEddited && <h3>☕ Coffee Edited ☕</h3>}
                 </form>
             </div>
         )

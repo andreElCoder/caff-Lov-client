@@ -8,6 +8,7 @@ import Profile from './components/user/Profile'
 import AuthService from './components/auth/auth-service';
 import Navbar from './components/Navbar'
 import CoffeeDetail from './components/coffee/CoffeeDetail'
+import EditCoffee from './components/coffee/EditCoffee'
 
 class App extends Component {
   state = {
@@ -50,6 +51,7 @@ class App extends Component {
           <Route path='/signup' render={(props) => <Signup setCurrentUser={this.setCurrentUser} {...props} /> } />
           <Route path='/profile' render={(props) => this.state.loggedInUser ? <Profile username={this.state.loggedInUser}{...props} /> :<h1>...</h1>}/>
           <Route path='/coffee-detail/:id' render={(props) => this.state.loggedInUser ? <CoffeeDetail username={this.state.loggedInUser}{...props} />:<h1>...</h1>}/>
+          <Route path='/edit-coffee/:id' render={(props) => this.state.loggedInUser ? <EditCoffee username={this.state.loggedInUser}{...props} />:<h1>...</h1>}/>
         </Switch>
       </div>
     );

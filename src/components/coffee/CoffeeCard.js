@@ -15,6 +15,7 @@ class CoffeeCard extends Component{
   }
 
   render(){
+    console.log(this.props)
     return(
     <div>    
       <Card style={{ width: '16rem' }}>
