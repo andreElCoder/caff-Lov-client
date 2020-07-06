@@ -1,48 +1,37 @@
-import React, { Component } from "react"
-import Rating from "react-rating"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
-import axios from "axios"
-import { ToastContainer, toast } from 'react-toastify';
-import {Button} from 'react-bootstrap'
+import React, { Component } from 'react';
+import axios from 'axios';
 
-class AddCoffee extends Component{
+class Editcoffee extends Component {
 
     state = {
         name:"",
         description:"",
         url:"",
         rating:0,
-        coffeAdded:false
     }
 
-    updateRating= (value) =>{
-        this.setState({
-           rating:value
-        })
+    componentDidMount() {
+        //Make call to the API
+        //Set the state with the response
     }
 
     handleChange = (event) => {
         const {name, value} = event.target;
-        this.setState({[name] : value});
+        this.setState({[name]: value});
     }
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        const {name,description,url,rating} = this.state
-
-        axios.post('http://localhost:5000/api/add-coffee', {name,description,url,rating})
-            .then(() => { 
-                //1. Lift the state up and push new Coffee into the state that lives on Coffees
-                //2. Call the api to get all projects again
-                this.props.lifUpCoffee(this.state)
-                this.setState({name:"",description:"",url:"",rating:0,coffeAdded:true})
-                setTimeout(()=>{this.setState({coffeAdded:false})},2000)
-            })        
+        const { title, description,url,rating } = this.state;
+        const { params } = this.props.match;
+        axios.put(`http://localhost:5000/api/edit-coffee/${params.id}`, { title, description,url,rating} )
+            .then(() => {
+                this.props.history.push('/coffees');
+            });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <form >
                     <label >Name</label>
@@ -56,14 +45,13 @@ class AddCoffee extends Component{
                         onClick={this.updateRating}
                         emptySymbol={<FontAwesomeIcon icon={faCoffee} color="gray"/>}
                         fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
-                        fractions={2}
                     />
                     <Button onClick={this.handleFormSubmit}>Add it</Button>
-                    {this.state.coffeAdded && <h3>☕ Coffe Added ☕</h3>}
+                    {this.state.coffeAdded && <h3>☕ Coffe Edited ☕</h3>}
                 </form>
             </div>
         )
     }
-
 }
-export default AddCoffee
+
+export default Editcoffee;

@@ -52,7 +52,7 @@ class Profile extends Component{
                     <div>
                         {this.state.coffees.map((coffee) =>{
                             return(
-                            <CoffeeCard key={coffee._id}/>) 
+                            <CoffeeCard coffee={coffee} key={coffee._id}/>) 
                             })}
                     </div>
                 </div>
