@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
 import Rating from "react-rating"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MyComponent from "../location/PlaceFromQuery"
 
 class CoffeeDetails extends Component {
     //1. Option one
@@ -85,6 +86,9 @@ class CoffeeDetails extends Component {
                         rating:this.state.rating
                     }
                     }}>Edit coffee</Link>  
+                </div>
+                <div>
+                    <MyComponent></MyComponent>
                 </div>
                 <hr />
 
