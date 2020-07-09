@@ -1,17 +1,19 @@
 import React from 'react'
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
- 
+
+require('dotenv').config()
 const containerStyle = {
   width: '800px',
   height: '400px'
 };
- 
+ console.log({key : process.env.REACT_APP_GOOGLE_KEY})
 const center = {
   lat: -3.745,
   lng: -3.523
 };
  
 function MyComponent() {
+  
   const [map, setMap] = React.useState(null)
  
   const onLoad = React.useCallback(function callback(map) {
@@ -26,7 +28,7 @@ function MyComponent() {
  
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyDWDpEV5v5NF12eBeNWjUGFKQQ5MZtYk74"
+      googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
