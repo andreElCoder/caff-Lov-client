@@ -5,6 +5,7 @@ import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import {Button} from 'react-bootstrap'
+import ExampleSearchbox from "../location/ExampleSearchbox"
 
 class AddCoffee extends Component{
 
@@ -31,11 +32,11 @@ class AddCoffee extends Component{
         event.preventDefault();
         const uploadData = new FormData()
         uploadData.append("url", this.state.file);
-        axios.post('http://localhost:5000/api/upload-coffee', uploadData)
+        axios.post('http://guarded-brushlands-19635.herokuapp.com/api/upload-coffee', uploadData)
         .then((responsefromUpload)=>{
             const {name,description,rating} = this.state
             const url=responsefromUpload.data.url
-            axios.post('http://localhost:5000/api/add-coffee', {name,description,url,rating})
+            axios.post('http://guarded-brushlands-19635.herokuapp.com/api/add-coffee', {name,description,url,rating})
             .then((responsefromAdd) => { 
                 //1. Lift the state up and push new Coffee into the state that lives on Coffees
                 //2. Call the api to get all projects again
@@ -70,6 +71,7 @@ class AddCoffee extends Component{
                     />
                     <input type="file" onChange={this.handleFileChange} /> 
                     <Button onClick={this.handleFormSubmit}>Add it</Button>
+                    <ExampleSearchbox/>
                     {this.state.coffeAdded && <h3>☕ Coffe Added ☕</h3>}
                 </form>
             </div>

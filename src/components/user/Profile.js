@@ -4,6 +4,7 @@ import {Card,Button} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import AddCoffee from "../coffee/AddCoffee"
 import CoffeeCard from "../coffee/CoffeeCard"
+import ExampleSearchBox from "../location/ExampleSearchbox"
 
 class Profile extends Component{
 
@@ -32,7 +33,7 @@ class Profile extends Component{
     }
     componentDidMount(){
         axios
-        .get("http://localhost:5000/api/coffees")
+        .get("https://guarded-brushlands-19635.herokuapp.com/api/coffees")
         .then(response =>{
             console.log(response.data)
             this.setState({
@@ -56,6 +57,9 @@ class Profile extends Component{
                                 
                             <CoffeeCard coffee={coffee} key={coffee._id}/>) 
                             })}
+                    </div>
+                    <div>
+                     <ExampleSearchBox></ExampleSearchBox>
                     </div>
                 </div>
             )

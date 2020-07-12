@@ -18,7 +18,7 @@ class Editcoffee extends Component {
     componentDidMount() {
         const { params } = this.props.match;
         axios
-        .get(`http://localhost:5000/api/coffee-detail/${params.id}`)
+        .get(`http://guarded-brushlands-19635.herokuapp.com/api/coffee-detail/${params.id}`)
         .then(responseFromAPI =>{
             console.log(responseFromAPI)
             const{name,description,url,rating} = responseFromAPI.data
@@ -40,7 +40,7 @@ class Editcoffee extends Component {
         event.preventDefault();
         const { name, description,url,rating } = this.state;
         const { params } = this.props.match;
-        axios.put(`http://localhost:5000/api/edit-coffee/${params.id}`, { name, description,url,rating} )
+        axios.put(`http://guarded-brushlands-19635.herokuapp.com/api/edit-coffee/${params.id}`, { name, description,url,rating} )
             .then(() => {
                 this.setState({coffeEddited:true})
                 setTimeout(()=>{

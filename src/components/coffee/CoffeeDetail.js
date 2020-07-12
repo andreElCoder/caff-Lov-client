@@ -4,7 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
 import Rating from "react-rating"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import MyComponent from "../location/PlaceFromQuery"
+import MarkerGoogle from '../location/MarkerGoogle';
 
 class CoffeeDetails extends Component {
     //1. Option one
@@ -22,7 +22,7 @@ class CoffeeDetails extends Component {
     getSinglecoffee = () => {
         //id of the coffee is on the url /coffee-detail/<id>
         const { params } = this.props.match;
-        axios.get(`http://localhost:5000/api/coffee-detail/${params.id}`)
+        axios.get(`http://guarded-brushlands-19635.herokuapp.com/api/coffee-detail/${params.id}`)
             .then(responseFromAPI => {
                 const coffee = responseFromAPI.data;
                 console.log('coffee found', coffee);
@@ -47,7 +47,7 @@ class CoffeeDetails extends Component {
 
     deleteCoffee = () => {
         const { params } = this.props.match;
-        axios.delete(`http://localhost:5000/api/delete-coffee/${params.id}`)
+        axios.delete(`http://guarded-brushlands-19635.herokuapp.com/api/delete-coffee/${params.id}`)
             .then(() => {
                 //return <Redirect to='/coffees' />
                 this.props.history.push('/profile');
@@ -88,7 +88,7 @@ class CoffeeDetails extends Component {
                     }}>Edit coffee</Link>  
                 </div>
                 <div>
-                    <MyComponent></MyComponent>
+                    <MarkerGoogle/>
                 </div>
                 <hr />
 
