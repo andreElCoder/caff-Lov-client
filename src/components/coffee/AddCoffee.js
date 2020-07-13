@@ -5,7 +5,7 @@ import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import {Button} from 'react-bootstrap'
-import ExampleSearchbox from "../location/ExampleSearchbox"
+import Map from "../location/Map"
 
 class AddCoffee extends Component{
 
@@ -71,7 +71,7 @@ class AddCoffee extends Component{
                     />
                     <input type="file" onChange={this.handleFileChange} /> 
                     <Button onClick={this.handleFormSubmit}>Add it</Button>
-                    <ExampleSearchbox/>
+                    <Map coffeeName={this.state.name}/>
                     {this.state.coffeAdded && <h3>☕ Coffe Added ☕</h3>}
                 </form>
             </div>

@@ -4,7 +4,7 @@ import {Card,Button} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import AddCoffee from "../coffee/AddCoffee"
 import CoffeeCard from "../coffee/CoffeeCard"
-import ExampleSearchBox from "../location/ExampleSearchbox"
+import ExampleSearchBox from "../location/Map"
 
 class Profile extends Component{
 
@@ -59,7 +59,7 @@ class Profile extends Component{
                             })}
                     </div>
                     <div>
-                     <ExampleSearchBox></ExampleSearchBox>
+                     
                     </div>
                 </div>
             )
