@@ -4,7 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
 import Rating from "react-rating"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import MarkerGoogle from '../location/MarkerGoogle';
+import Map from "../location/Map"
 
 class CoffeeDetails extends Component {
     //1. Option one
@@ -15,7 +15,7 @@ class CoffeeDetails extends Component {
 
     //2. Option two
     state = {
-
+        
     }
 
 
@@ -57,6 +57,7 @@ class CoffeeDetails extends Component {
 
     // 1. Happens first
     render() {
+        console.log(this.state)
         const { params } = this.props.match;
         return(
             <div>
@@ -88,7 +89,7 @@ class CoffeeDetails extends Component {
                     }}>Edit coffee</Link>  
                 </div>
                 <div>
-                    <MarkerGoogle/>
+                    <Map editable={false} markers={this.state.markers}/> 
                 </div>
                 <hr />
 

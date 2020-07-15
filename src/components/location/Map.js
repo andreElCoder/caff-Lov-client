@@ -24,14 +24,15 @@ const libraries=["places"]
 class Map extends Component{
 
   state={
-  markers  : [],
+  markers  : this.props.markers,
   selected : null,
   center :   {lat: -3.745,lng: -38.523},
-  name : ""
+  name : "",
+  editable: this.props.editable
   }
   
   insertMarker = (event) =>{
-    if(this.state.markers){
+    if(this.state.markers && this.state.editable){
       this.setState({
         markers :  [...this.state.markers,{
           lat: event.latLng.lat(),
@@ -39,17 +40,20 @@ class Map extends Component{
         }]
       })
     } else{
-      this.setState({
-        markers: {
-          lat: event.latLng.lat(),
-          lng: event.latLng.lng()
-        }
-      })
+      if(this.state.editable){
+        this.setState({
+          markers: {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng()
+          }
+        })
+      }
     }
+    if(this.state.editable) this.props.liftUpMarkers(this.state.markers)
   }
 
   selectMarker = (marker) =>{
-
+      
       this.setState({
         selected: marker
       })
@@ -79,6 +83,8 @@ addMarkerFromSearch = (marker) =>{
 }
 
   render(){
+    console.log(this.props)
+    console.log(this.state)
     return (
       <div>
         <LoadScript
@@ -111,7 +117,7 @@ addMarkerFromSearch = (marker) =>{
                )
           })
           :null}
-          {this.state.selected ?     
+          {this.state.selected ?
           <InfoWindow
             position={this.state.selected}
             onCloseClick={this.unSelectMarker}
@@ -121,9 +127,9 @@ addMarkerFromSearch = (marker) =>{
       </div>
     </InfoWindow>:null}
 
-    <GoogleSuggest addMarkerFromSearch={this.addMarkerFromSearch}>
+    {this.state.editable && <GoogleSuggest addMarkerFromSearch={this.addMarkerFromSearch}>
 
-    </GoogleSuggest>
+    </GoogleSuggest>}
           <></>
         </GoogleMap>
         <div>Icons used as Markers, made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

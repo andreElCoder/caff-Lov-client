@@ -14,12 +14,18 @@ class AddCoffee extends Component{
         description:"",
         file:"",
         rating:0,
-        coffeAdded:false
+        coffeAdded:false,
+        markers:[]
     }
 
     updateRating= (value) =>{
         this.setState({
            rating:value
+        })
+    }
+    handleMarkers = (markersFromMap)=>{
+        this.setState({
+            markers: markersFromMap
         })
     }
 
@@ -34,9 +40,9 @@ class AddCoffee extends Component{
         uploadData.append("url", this.state.file);
         axios.post('http://guarded-brushlands-19635.herokuapp.com/api/upload-coffee', uploadData)
         .then((responsefromUpload)=>{
-            const {name,description,rating} = this.state
+            const {name,description,rating,markers} = this.state
             const url=responsefromUpload.data.url
-            axios.post('http://guarded-brushlands-19635.herokuapp.com/api/add-coffee', {name,description,url,rating})
+            axios.post('http://guarded-brushlands-19635.herokuapp.com/api/add-coffee', {name,description,url,rating,markers})
             .then((responsefromAdd) => { 
                 //1. Lift the state up and push new Coffee into the state that lives on Coffees
                 //2. Call the api to get all projects again
@@ -71,7 +77,7 @@ class AddCoffee extends Component{
                     />
                     <input type="file" onChange={this.handleFileChange} /> 
                     <Button onClick={this.handleFormSubmit}>Add it</Button>
-                    <Map coffeeName={this.state.name}/>
+                    <Map coffeeName={this.state.name} liftUpMarkers = {this.handleMarkers} markers={[]}/>
                     {this.state.coffeAdded && <h3>☕ Coffe Added ☕</h3>}
                 </form>
             </div>
