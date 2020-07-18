@@ -77,7 +77,7 @@ class AddCoffee extends Component{
                     />
                     <input type="file" onChange={this.handleFileChange} /> 
                     <Button onClick={this.handleFormSubmit}>Add it</Button>
-                    <Map coffeeName={this.state.name} liftUpMarkers = {this.handleMarkers} markers={[]}/>
+                    <Map coffeeName={this.state.name} liftUpMarkers = {this.handleMarkers} editable={true} markers={[]}/>
                     {this.state.coffeAdded && <h3>☕ Coffe Added ☕</h3>}
                 </form>
             </div>

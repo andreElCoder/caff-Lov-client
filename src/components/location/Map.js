@@ -20,6 +20,13 @@ const options = {
 }
 const libraries=["places"]
 
+/*                icon={{
+                  url: "/coffee.svg",
+                  scaledSize: new window.google.maps.Size(30,30),
+                  origin: new window.google.maps.Point(0,0),
+                  anchor: new window.google.maps.Point(15,15)
+                }}
+*/
 
 class Map extends Component{
 
@@ -29,6 +36,13 @@ class Map extends Component{
   center :   {lat: -3.745,lng: -38.523},
   name : "",
   editable: this.props.editable
+  }
+  componentDidMount(){
+    
+    this.setState({
+      markers : this.props.markers
+    })
+    console.log(this.state)
   }
   
   insertMarker = (event) =>{
@@ -53,14 +67,24 @@ class Map extends Component{
   }
 
   selectMarker = (marker) =>{
-      
+      if(!this.state.editable){
       this.setState({
         selected: marker
       })
-    
+    } else{
+        const markersCopy = this.state.markers
+        let index = markersCopy
+                    .findIndex(markerElementArray => 
+                      {return markerElementArray.lat ===marker.lat && markerElementArray.lng===marker.lng})
+
+        markersCopy.splice(index,1)
+        this.setState({
+          markers: markersCopy
+        })
+    }
   }
   unSelectMarker = () =>{
-
+    
     this.setState({
       selected: null
     })
@@ -83,6 +107,7 @@ addMarkerFromSearch = (marker) =>{
 }
 
   render(){
+
     console.log(this.props)
     console.log(this.state)
     return (
@@ -90,6 +115,7 @@ addMarkerFromSearch = (marker) =>{
         <LoadScript
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}
         libraries={libraries}
+        onLoad={console.log("I have loaded")}
         >
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -98,25 +124,20 @@ addMarkerFromSearch = (marker) =>{
           options={options}
           onClick={this.insertMarker}
         >
-
+          
           { /* Child components, such as markers, info windows, etc. */ }
-          {this.state.markers ? this.state.markers.map((marker,i) => {
+    {this.state.markers ? this.state.markers.map((marker,i) => {
+  
             return(
                <Marker
                 key={i}
                 position={{lat:marker.lat, lng: marker.lng}}
-                icon={{
-                  url: "/coffee.svg",
-                  scaledSize: new window.google.maps.Size(30,30),
-                  origin: new window.google.maps.Point(0,0),
-                  anchor: new window.google.maps.Point(15,15)
-                }}
                 onClick={() => this.selectMarker(marker)}
                 
                />
                )
           })
-          :null}
+        :null}
           {this.state.selected ?
           <InfoWindow
             position={this.state.selected}

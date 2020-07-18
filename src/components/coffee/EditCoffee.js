@@ -14,7 +14,7 @@ class Editcoffee extends Component {
         url:"",
         rating:0,
         coffeEddited:false,
-        markers:[]
+        
     }
 
     componentDidMount() {
@@ -67,6 +67,8 @@ class Editcoffee extends Component {
     }
 
     render() {
+        console.log(this.state)
+        console.log(this.props)
         return (
             <div>
                 <form >
@@ -83,7 +85,8 @@ class Editcoffee extends Component {
                         fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
                     />
                     <Button onClick={this.handleFormSubmit}>Update it</Button>
-                    <Map coffeeName={this.state.name} liftUpMarkers = {this.handleMarkers} editable={true}/>
+                    
+                    {this.state.markers && <Map liftUpMarkers = {this.handleMarkers} editable={true} markers={this.state.markers}/>} 
                     {this.state.coffeEddited && <h3>☕ Coffee Edited ☕</h3>}
                 </form>
             </div>

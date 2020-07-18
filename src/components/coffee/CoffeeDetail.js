@@ -84,12 +84,13 @@ class CoffeeDetails extends Component {
                         name: this.state.name,
                         description: this.state.description,
                         url:this.state.url,
-                        rating:this.state.rating
+                        rating:this.state.rating,
+                        markers:this.state.markers
                     }
                     }}>Edit coffee</Link>  
                 </div>
                 <div>
-                    <Map editable={false} markers={this.state.markers}/> 
+                {this.state.markers && <Map editable={false} markers={this.state.markers}/>} 
                 </div>
                 <hr />
 
