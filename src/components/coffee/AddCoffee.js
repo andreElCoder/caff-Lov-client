@@ -6,6 +6,7 @@ import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import {Button} from 'react-bootstrap'
 import Map from "../location/Map"
+require('dotenv').config()
 
 class AddCoffee extends Component{
 
@@ -35,14 +36,19 @@ class AddCoffee extends Component{
     }
 
     handleFormSubmit = (event) => {
+        console.log(this.state)
+        console.log(this.props)
         event.preventDefault();
         const uploadData = new FormData()
         uploadData.append("url", this.state.file);
-        axios.post('http://guarded-brushlands-19635.herokuapp.com/api/upload-coffee', uploadData)
+        axios.post(`${process.env.REACT_APP_LOCAL_URL}/api/upload-coffee`, uploadData)
         .then((responsefromUpload)=>{
             const {name,description,rating,markers} = this.state
+            const usernameId = this.props.usernameId
+            console.log(usernameId)
+            console.log(name)
             const url=responsefromUpload.data.url
-            axios.post('http://guarded-brushlands-19635.herokuapp.com/api/add-coffee', {name,description,url,rating,markers})
+            axios.post(`${process.env.REACT_APP_LOCAL_URL}/api/add-coffee`, {name,description,url,rating,markers,usernameId})
             .then((responsefromAdd) => { 
                 //1. Lift the state up and push new Coffee into the state that lives on Coffees
                 //2. Call the api to get all projects again

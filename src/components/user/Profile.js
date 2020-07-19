@@ -5,11 +5,12 @@ import {Link} from "react-router-dom"
 import AddCoffee from "../coffee/AddCoffee"
 import CoffeeCard from "../coffee/CoffeeCard"
 import ExampleSearchBox from "../location/Map"
-
+require('dotenv').config()
 class Profile extends Component{
 
     state ={
         username:this.props.username.username,
+        usernameId:this.props.username._id,
         url:"",
         coffees:[],
         coffeeholics:[],
@@ -33,7 +34,7 @@ class Profile extends Component{
     }
     componentDidMount(){
         axios
-        .get("https://guarded-brushlands-19635.herokuapp.com/api/coffees")
+        .get(`${process.env.REACT_APP_LOCAL_URL}/api/username/${this.state.usernameId}/coffees`)
         .then(response =>{
             console.log(response.data)
             this.setState({
@@ -49,10 +50,10 @@ class Profile extends Component{
                     </div>
                     <div>
                         <Button onClick={this.showAdd}>Upload coffee</Button>
-                        {this.state.addButton && <AddCoffee lifUpCoffee={this.refreshCoffees} />}
+                        {this.state.addButton && <AddCoffee lifUpCoffee={this.refreshCoffees} usernameId={this.state.usernameId} />}
                     </div>
                     <div>
-                        {this.state.coffees.map((coffee) =>{console.log(coffee)
+                        {this.state.coffees!=[] && this.state.coffees.map((coffee) =>{console.log(coffee)
                             return(
                                 
                             <CoffeeCard coffee={coffee} key={coffee._id}/>) 

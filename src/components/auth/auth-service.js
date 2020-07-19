@@ -1,37 +1,38 @@
 import axios from 'axios';
+require('dotenv').config()
 
 class AuthService {
     constructor() {
         let service = axios.create({
-            baseURL: 'http://guarded-brushlands-19635.herokuapp.com/api',
+            baseURL: process.env.REACT_APP_LOCAL_URL,
             withCredentials: true
         });
         this.service = service;
     }
 
     signup = (username, password)  => {
-        return this.service.post('/signup', { username, password})
+        return this.service.post('api/signup', { username, password})
             .then((response) => {
                 return response.data;
             });
     }
 
     loggedin = () => {
-        return this.service.get('/loggedin')
+        return this.service.get('api/loggedin')
             .then((response) => {
                 return response.data;
             });
     }
 
     logout = () => {
-        return this.service.post('/logout')
+        return this.service.post('api/logout')
             .then((response) => {
                 return response.data;
             });
     }
 
     login = (username, password)  => {
-        return this.service.post('/login', { username, password})
+        return this.service.post('api/login', { username, password})
             .then(response => response.data);
     }
 }

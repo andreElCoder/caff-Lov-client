@@ -5,6 +5,7 @@ import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
 import Rating from "react-rating"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Map from "../location/Map"
+require('dotenv').config()
 
 class CoffeeDetails extends Component {
     //1. Option one
@@ -22,7 +23,7 @@ class CoffeeDetails extends Component {
     getSinglecoffee = () => {
         //id of the coffee is on the url /coffee-detail/<id>
         const { params } = this.props.match;
-        axios.get(`http://guarded-brushlands-19635.herokuapp.com/api/coffee-detail/${params.id}`)
+        axios.get(`${process.env.REACT_APP_LOCAL_URL}/api/coffee-detail/${params.id}`)
             .then(responseFromAPI => {
                 const coffee = responseFromAPI.data;
                 console.log('coffee found', coffee);
@@ -47,7 +48,7 @@ class CoffeeDetails extends Component {
 
     deleteCoffee = () => {
         const { params } = this.props.match;
-        axios.delete(`http://guarded-brushlands-19635.herokuapp.com/api/delete-coffee/${params.id}`)
+        axios.delete(`${process.env.REACT_APP_LOCAL_URL}/api/delete-coffee/${params.id}`)
             .then(() => {
                 //return <Redirect to='/coffees' />
                 this.props.history.push('/profile');

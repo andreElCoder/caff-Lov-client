@@ -5,7 +5,7 @@ import Rating from "react-rating"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Button} from "react-bootstrap"
 import Map from "../location/Map"
-
+require('dotenv').config()
 class Editcoffee extends Component {
 
     state = {
@@ -20,7 +20,7 @@ class Editcoffee extends Component {
     componentDidMount() {
         const { params } = this.props.match;
         axios
-        .get(`http://guarded-brushlands-19635.herokuapp.com/api/coffee-detail/${params.id}`)
+        .get(`${process.env.REACT_APP_LOCAL_URL}/api/coffee-detail/${params.id}`)
         .then(responseFromAPI =>{
             console.log(responseFromAPI)
             const{name,description,url,rating,markers} = responseFromAPI.data
@@ -44,7 +44,7 @@ class Editcoffee extends Component {
         event.preventDefault();
         const { name, description,url,rating,markers } = this.state;
         const { params } = this.props.match;
-        axios.put(`http://guarded-brushlands-19635.herokuapp.com/api/edit-coffee/${params.id}`, { name, description,url,rating,markers} )
+        axios.put(`${process.env.REACT_APP_LOCAL_URL}/api/edit-coffee/${params.id}`, { name, description,url,rating,markers} )
             .then(() => {
                 this.setState({coffeEddited:true})
                 setTimeout(()=>{
@@ -65,7 +65,11 @@ class Editcoffee extends Component {
             markers: markersFromMap
         })
     }
-
+    updateRating= (value) =>{
+        this.setState({
+           rating:value
+        })
+    }
     render() {
         console.log(this.state)
         console.log(this.props)
