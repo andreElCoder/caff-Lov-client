@@ -7,9 +7,11 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup'
 import Profile from './components/user/Profile'
 import AuthService from './components/auth/auth-service';
-import Navbar from './components/Navbar'
+import NavbarCoffee from './components/NavbarCoffee'
 import CoffeeDetail from './components/coffee/CoffeeDetail'
 import EditCoffee from './components/coffee/EditCoffee'
+import Footer from './components/Footer';
+import InitialPage from './components/coffee/InitialPage';
 
 
 class App extends Component {
@@ -47,14 +49,16 @@ class App extends Component {
     console.log(this.state.loggedInUser)
     return (
       <div className="App">
-        <Navbar setCurrentUser={this.setCurrentUser} loggedInUser={this.state.loggedInUser} />
+        <NavbarCoffee setCurrentUser={this.setCurrentUser} loggedInUser={this.state.loggedInUser} />
         <Switch>
+          <Route exact path='/' render={(props) => <InitialPage setCurrentUser={this.setCurrentUser} {...props} /> } />
           <Route path='/login' render={(props) => <Login setCurrentUser={this.setCurrentUser} {...props} /> } />
           <Route path='/signup' render={(props) => <Signup setCurrentUser={this.setCurrentUser} {...props} /> } />
           <Route path='/profile' render={(props) => this.state.loggedInUser ? <Profile username={this.state.loggedInUser}{...props} /> :<h1>...</h1>}/>
           <Route path='/coffee-detail/:id' render={(props) => this.state.loggedInUser ? <CoffeeDetail username={this.state.loggedInUser}{...props} />:<h1>...</h1>}/>
           <Route path='/edit-coffee/:id' render={(props) => this.state.loggedInUser ? <EditCoffee username={this.state.loggedInUser}{...props} />:<h1>...</h1>}/>
         </Switch>
+        <Footer/>
       </div>
     );
   }

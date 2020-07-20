@@ -46,7 +46,7 @@ class Profile extends Component{
         return(
                 <div>
                     <div>
-                        <h1>Profile {this.state.username}</h1>  
+                        <h1>{this.state.username}</h1>  
                     </div>
                     <div>
                         <Button onClick={this.showAdd}>Upload coffee</Button>

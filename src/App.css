@@ -1,6 +1,21 @@
 .App {
-  text-align: center;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+  align-content: center;
+  
 }
+html, 
+body {
+    height: 100%;
+}
+#root{
+  height: 100%;
+}
+.App{height: 100%;}
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +50,81 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav-bar-color{
+    background-color: rgba(85, 38, 0, 0.548);
+    width: 100vw;
+}
+.nav-bar-link {
+  color: white;
+}
+.selected{
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+.footer{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+  width: 100%;
+  background-color:  rgb(199, 199, 199)
+}
+.footer-color{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: center;
+  width: 100%;
+  color: rgba(85, 38, 0, 0.548);
+  background-color:  rgb(199, 199, 199)
+}
+.footer-copyright{
+
+}
+#footer-links{
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: center;
+}
+
+.navbar-links{
+  width: 20vh;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: center;
+}
+.page-footer{
+  width: 100%;
+}
+.carousel{
+  width: 100vw;
+  height: 78vh;
+  margin-top: 0%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+.carousel-image{
+  width: 100vw;
+  height: 78vh;
+}
+.navbar-expand {
+  position:absolute;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
