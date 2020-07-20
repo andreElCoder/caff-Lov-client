@@ -14,7 +14,8 @@ class Profile extends Component{
         url:"",
         coffees:[],
         coffeeholics:[],
-        addButton:false
+        addButton:false,
+        height:"100vh"
     }
 
     showAdd = (event) =>{
@@ -42,18 +43,24 @@ class Profile extends Component{
             })
         })
     }
+
     render(){
+        if(this.state.coffees.length>5){
+            document.body.style.height="200vh"
+            this.state.height="200vh"
+        }
         return(
-                <div>
+            <div className="profile"> 
                     <div>
                         <h1>{this.state.username}</h1>  
                     </div>
-                    <div>
+                    <div className="add">
                         <Button onClick={this.showAdd}>Upload coffee</Button>
-                        {this.state.addButton && <AddCoffee lifUpCoffee={this.refreshCoffees} usernameId={this.state.usernameId} />}
                     </div>
-                    <div>
-                        {this.state.coffees!=[] && this.state.coffees.map((coffee) =>{console.log(coffee)
+                        {this.state.addButton && <AddCoffee lifUpCoffee={this.refreshCoffees} usernameId={this.state.usernameId} />}
+                    
+                    <div className="coffee-cards" style ={{height:`${this.state.height}`}}>
+                        {!this.state.addButton && this.state.coffees!=[] && this.state.coffees.map((coffee) =>{console.log(coffee)
                             return(
                                 
                             <CoffeeCard coffee={coffee} key={coffee._id}/>) 
@@ -62,7 +69,7 @@ class Profile extends Component{
                     <div>
                      
                     </div>
-                </div>
+            </div>
             )
     }
 }

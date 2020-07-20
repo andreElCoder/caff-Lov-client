@@ -68,24 +68,28 @@ class AddCoffee extends Component{
 
     render(){
         return(
-            <div>
-                <form >
-                    <label >Name</label>
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange}></input>
-                    <label >Description</label>
-                    <input type="text" name="description" value={this.state.description} onChange={this.handleChange}></input>
-                    <Rating
-                        initialRating = {this.state.rating}
-                        onClick={this.updateRating}
-                        emptySymbol={<FontAwesomeIcon icon={faCoffee} color="gray"/>}
-                        fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
-                        fractions={2}
-                    />
-                    <input type="file" onChange={this.handleFileChange} /> 
-                    <Button onClick={this.handleFormSubmit}>Add it</Button>
-                    <Map coffeeName={this.state.name} liftUpMarkers = {this.handleMarkers} editable={true} markers={[]}/>
+            <div className="profile"> 
+                <div>
+                    <form >
+                        <label >Name</label>
+                        <input type="text" name="name" value={this.state.name} onChange={this.handleChange}></input>
+                        <label >Description</label>
+                        <input type="text" name="description" value={this.state.description} onChange={this.handleChange}></input>
+                        <Rating
+                            initialRating = {this.state.rating}
+                            onClick={this.updateRating}
+                            emptySymbol={<FontAwesomeIcon icon={faCoffee} color="gray"/>}
+                            fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
+                            fractions={2}
+                        />
+                        <input type="file" onChange={this.handleFileChange} /> 
+                        <Button onClick={this.handleFormSubmit}>Add it</Button>
+                    </form>
+                </div>
+                <div className = "added">
                     {this.state.coffeAdded && <h3>☕ Coffe Added ☕</h3>}
-                </form>
+                    <Map coffeeName={this.state.name} liftUpMarkers = {this.handleMarkers} editable={true} markers={[]}/>
+                </div>
             </div>
         )
     }

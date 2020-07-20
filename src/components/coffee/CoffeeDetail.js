@@ -48,7 +48,7 @@ class CoffeeDetails extends Component {
 
     deleteCoffee = () => {
         const { params } = this.props.match;
-        axios.delete(`${process.env.REACT_APP_LOCAL_URL}/api/delete-coffee/${params.id}`)
+        axios.delete(`${process.env.REACT_APP_LOCAL_URL}/api/username/${this.props.username._id}/delete-coffee/${params.id}`)
             .then(() => {
                 //return <Redirect to='/coffees' />
                 this.props.history.push('/profile');
@@ -59,6 +59,7 @@ class CoffeeDetails extends Component {
     // 1. Happens first
     render() {
         console.log(this.state)
+        console.log(this.props.username._id)
         const { params } = this.props.match;
         return(
             <div>
