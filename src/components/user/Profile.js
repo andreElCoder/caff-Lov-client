@@ -15,7 +15,8 @@ class Profile extends Component{
         coffees:[],
         coffeeholics:[],
         addButton:false,
-        height:"100vh"
+        height:"100vh",
+        i:1
     }
 
     showAdd = (event) =>{
@@ -29,26 +30,40 @@ class Profile extends Component{
         console.log(newCoffee)
         const newCoffees = this.state.coffees
         newCoffees.unshift(newCoffee)
+        let index=this.state.i
+        if(this.state.coffees.length>index*6){
+            index=this.state.i+1
+            document.body.style.height=`${index*80}vh`
+            this.state.height=`${index*80}vh`
+            
+        }
         this.setState({
-            coffees:newCoffees
+            coffees:newCoffees,
+            i:index
         })
     }
     componentDidMount(){
+
         axios
         .get(`${process.env.REACT_APP_LOCAL_URL}/api/username/${this.state.usernameId}/coffees`)
         .then(response =>{
             console.log(response.data)
+            let index=this.state.i
+            if(response.data.length>index*6){
+            index=this.state.i+1
+            document.body.style.height=`${index*80}vh`
+            this.state.height=`${index*80}vh`
+            
+        }
             this.setState({
-                coffees:response.data
+                coffees:response.data,
+                i:index
             })
         })
     }
 
     render(){
-        if(this.state.coffees.length>5){
-            document.body.style.height="200vh"
-            this.state.height="200vh"
-        }
+
         return(
             <div className="profile"> 
                     <div>

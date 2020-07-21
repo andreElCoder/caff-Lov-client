@@ -12,7 +12,7 @@ import CoffeeDetail from './components/coffee/CoffeeDetail'
 import EditCoffee from './components/coffee/EditCoffee'
 import Footer from './components/Footer';
 import InitialPage from './components/coffee/InitialPage';
-
+import Search from './components/coffee/Search'
 
 class App extends Component {
   state = {
@@ -57,6 +57,7 @@ class App extends Component {
           <Route path='/profile' render={(props) => this.state.loggedInUser ? <Profile username={this.state.loggedInUser}{...props} /> :<h1>...</h1>}/>
           <Route path='/coffee-detail/:id' render={(props) => this.state.loggedInUser ? <CoffeeDetail username={this.state.loggedInUser}{...props} />:<h1>...</h1>}/>
           <Route path='/edit-coffee/:id' render={(props) => this.state.loggedInUser ? <EditCoffee username={this.state.loggedInUser}{...props} />:<h1>...</h1>}/>
+          <Route path='/search'  render={(props) => this.state.loggedInUser ? <Search username={this.state.loggedInUser}{...props} />:<h1>...</h1>}/>
         </Switch>
         <Footer/>
       </div>
