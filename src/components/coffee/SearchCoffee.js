@@ -17,6 +17,7 @@ class SearchCoffee extends Component {
     }
 
     render(){
+        console.log(this.state)
         return(<div id="search">
             <form >
                 <label >Search</label>
