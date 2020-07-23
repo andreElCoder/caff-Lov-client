@@ -16,8 +16,6 @@ const Footer = () => {
             <h5 className="title">Links</h5>
             <NavLink className="nav-bar-link" activeClassName="selected" to='/about'>About</NavLink>
             <NavLink className="nav-bar-link" activeClassName="selected" to='/API'>API</NavLink>
-            <NavLink className="nav-bar-link" activeClassName="selected" to='/profile'></NavLink>
-            <NavLink className="nav-bar-link" activeClassName="selected" to='/profile'>Profile</NavLink>
             </div>
         </MDBContainer>
       <div className="footer-copyright text-center py-3">

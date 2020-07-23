@@ -21,6 +21,7 @@ class Login extends Component {
         this.service.login(username, password)
             .then(response => {
                 //Set the whole application with the user that just logged in
+                console.log(response)
                 this.props.setCurrentUser(response);
                 this.setState({ username: '', password: ''});
                 this.props.history.push('/profile');
