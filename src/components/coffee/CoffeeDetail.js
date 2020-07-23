@@ -66,7 +66,7 @@ class CoffeeDetails extends Component {
             <div className="profile">
                 <h1>{this.state.name}</h1>
                 <p>{this.state.description}</p>
-                <img style={{ width: '20rem' }} src={this.state.url} alt="coffee"/>
+                <img style={{ width: '32vw' , height: '35vh' }} src={this.state.url} alt="coffee"/>
                 <Rating
                         initialRating = {this.state.rating}
                         readonly={true}

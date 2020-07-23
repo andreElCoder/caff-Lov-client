@@ -13,6 +13,7 @@ class Editcoffee extends Component {
         name:"",
         description:"",
         url:"",
+        file:"",
         rating:0,
         coffeEddited:false,
         
@@ -42,24 +43,28 @@ class Editcoffee extends Component {
     }
 
     handleFormSubmit = (event) => {
-        event.preventDefault();
-        const { name, description,url,rating,markers } = this.state;
         const { params } = this.props.match;
-        axios.put(`${process.env.REACT_APP_LOCAL_URL}/api/edit-coffee/${params.id}`, { name, description,url,rating,markers} )
-            .then(() => {
-                this.setState({coffeEddited:true})
-                setTimeout(()=>{
-                    this.props.history.push('/profile')
-                    this.setState({
-                        name:"",
-                        description:"",
-                        url:"",
-                        rating:0,
-                        coffeEddited:false,
-                        markers
-                    })
-                },1000);
-            });
+        console.log(this.state)
+        console.log(this.props)
+        event.preventDefault();
+        const uploadData = new FormData()
+        uploadData.append("url", this.state.file);
+        axios.post(`${process.env.REACT_APP_LOCAL_URL}/api/upload-coffee`, uploadData)
+        .then((responsefromUpload)=>{
+            const {name,description,rating,markers} = this.state
+            const usernameId = this.props.usernameId
+            console.log(usernameId)
+            console.log(name)
+            const url=responsefromUpload.data.url
+            axios.put(`${process.env.REACT_APP_LOCAL_URL}/api/edit-coffee/${params.id}`, {name,description,url,rating,markers})
+            .then((responsefromEdit) => { 
+                //1. Lift the state up and push new Coffee into the state that lives on Coffees
+                //2. Call the api to get all projects again
+                console.log(responsefromEdit)
+                this.setState({name:responsefromEdit.data.name,description:responsefromEdit.data.description,url:responsefromEdit.data.url,rating:responsefromEdit.data.rating,coffeEddited:true})
+                setTimeout(()=>{this.setState({coffeEddited:false})},2000)
+            })      
+        })
     }
     handleMarkers = (markersFromMap)=>{
         this.setState({
@@ -71,6 +76,11 @@ class Editcoffee extends Component {
            rating:value
         })
     }
+
+    handleFileChange = (event) => {
+        this.setState({ file: event.target.files[0]});
+    }
+
     render() {
         console.log(this.state)
         console.log(this.props)
@@ -81,15 +91,15 @@ class Editcoffee extends Component {
                     <input type="text" name="name" value={this.state.name} onChange={this.handleChange}></input>
                     <label >Description</label>
                     <input type="text" name="description" value={this.state.description} onChange={this.handleChange} ></input>
-                    <label >Url</label>
-                    <input type="text" name="url" value={this.state.url} onChange={this.handleChange} ></input>
                     <Rating
                         initialRating = {this.state.rating}
                         onClick={this.updateRating}
                         emptySymbol={<FontAwesomeIcon icon={faCoffee} color="gray"/>}
                         fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
                     />
-                    <Button size="lg" variant="light" onClick={this.handleFormSubmit}>Update it</Button>
+                    <input id="upload-file" style={{display:"none"}} type="file" onChange={this.handleFileChange} /> 
+                        <label style={{backgroundImage: `url(${this.state.url})`, height:"100px" , width:"100px", backgroundSize: "100px 100px"}}id="upload-file" for="upload-file"></label>
+                        <Button size="lg" variant="light" onClick={this.handleFormSubmit}>Update it</Button>
                     
                     {this.state.markers && <Map liftUpMarkers = {this.handleMarkers} editable={true} markers={this.state.markers}/>} 
                     {this.state.coffeEddited && <h3><span role="img" aria-label="coffee">☕</span>Coffee Edited<span role="img" aria-label="coffee">☕</span></h3>}
