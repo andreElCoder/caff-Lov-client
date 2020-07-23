@@ -9,7 +9,7 @@ class Search extends Component{
     state ={
         search:this.props.location.state.state,
         coffees:[],
-        height:"100vh",
+        height:"160vh",
         i:1
     }
     searchIt = () =>{
@@ -20,9 +20,16 @@ class Search extends Component{
         .then(coffees =>{
             console.log(coffees.data)
             console.log(this.state)
+            
             this.setState({
                 coffees:coffees.data
             })
+            let index=this.state.i
+            if(this.state.coffees.length>index*6){
+                index=this.state.i+1
+                document.body.style.height=`${index*80}vh`
+                this.setState({height:`${index*80}vh`})
+            }
         })
     }
     componentDidMount(){
@@ -30,7 +37,7 @@ class Search extends Component{
     }
 
     updateNedded = () =>{
-        if(this.props.location.state.state!=this.state.search){
+        if(this.props.location.state.state!==this.state.search){
             this.searchIt()
     }
 
@@ -39,10 +46,10 @@ class Search extends Component{
         
         console.log(this.state)
         console.log(this.props.location.state.state)
-        {{this.state.search!=this.props.location.state.state && this.updateNedded() }}
+        this.state.search!==this.props.location.state.state && this.updateNedded()
         return(
             <div className="coffee-cards" style ={{height:`${this.state.height}`}}>
-            {this.state.coffees!=[] && this.state.coffees.map((coffee) =>{
+            {this.state.coffees!==[] && this.state.coffees.map((coffee) =>{
                 return(
                     
                 <CoffeeCard coffee={coffee} key={coffee._id}/>) 

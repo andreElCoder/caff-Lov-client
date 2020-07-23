@@ -1,12 +1,12 @@
 import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import { MDBContainer, MDBFooter } from "mdbreact";
 import {NavLink} from "react-router-dom"
 const Footer = () => {
   return (<div className="footer">
     <MDBFooter className="font-small pt-1 mt-1">
       <MDBContainer fluid className="text-center text-md-left footer-color">
             <div>
-                <h5 className="title">☕☕☕☕☕</h5>
+                <h5 className="title"><span role="img" aria-label="coffee">☕☕☕☕☕</span></h5>
                 <p>
                     ❤︎ We Love Coffee ❤︎
                 </p>

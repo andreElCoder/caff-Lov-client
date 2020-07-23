@@ -1,11 +1,10 @@
 import React, { Component } from "react"
 import axios from "axios"
-import {Card,Button} from "react-bootstrap"
-import {Link} from "react-router-dom"
+import {Button} from "react-bootstrap"
 import AddCoffee from "../coffee/AddCoffee"
 import CoffeeCard from "../coffee/CoffeeCard"
-import ExampleSearchBox from "../location/Map"
 require('dotenv').config()
+ 
 class Profile extends Component{
 
     state ={
@@ -16,14 +15,24 @@ class Profile extends Component{
         coffeeholics:[],
         addButton:false,
         height:"100vh",
-        i:1
+        height2:"10vh",
+        i:1,
+        buttonText:"Upload coffee",
+        buttonText2:"Back to Coffees"
     }
 
     showAdd = (event) =>{
         event.preventDefault()
+        const auxHeight = this.state.height
+        const auxButton = this.state.buttonText
         this.setState({
-            addButton:!this.state.addButton
+            addButton:!this.state.addButton,
+            height:this.state.height2,
+            height2:auxHeight,
+            buttonText:this.state.buttonText2,
+            buttonText2:auxButton
         })
+        document.body.style.height=`100vh`
     }
 
     refreshCoffees = (newCoffee) =>{
@@ -34,8 +43,7 @@ class Profile extends Component{
         if(this.state.coffees.length>index*6){
             index=this.state.i+1
             document.body.style.height=`${index*80}vh`
-            this.state.height=`${index*80}vh`
-            
+            this.setState({height:`${index*80}vh`})
         }
         this.setState({
             coffees:newCoffees,
@@ -52,7 +60,7 @@ class Profile extends Component{
             if(response.data.length>index*6){
             index=this.state.i+1
             document.body.style.height=`${index*80}vh`
-            this.state.height=`${index*80}vh`
+            this.setState({height:`${index*80}vh`})
             
         }
             this.setState({
@@ -70,12 +78,12 @@ class Profile extends Component{
                         <h1>{this.state.username}</h1>  
                     </div>
                     <div className="add">
-                        <Button onClick={this.showAdd}>Upload coffee</Button>
+        <Button size="lg" variant="light" onClick={this.showAdd}>{this.state.buttonText}</Button>
                     </div>
                         {this.state.addButton && <AddCoffee lifUpCoffee={this.refreshCoffees} usernameId={this.state.usernameId} />}
                     
                     <div className="coffee-cards" style ={{height:`${this.state.height}`}}>
-                        {!this.state.addButton && this.state.coffees!=[] && this.state.coffees.map((coffee) =>{console.log(coffee)
+                        {!this.state.addButton && this.state.coffees!==[] && this.state.coffees.map((coffee) =>{console.log(coffee)
                             return(
                                 
                             <CoffeeCard coffee={coffee} key={coffee._id}/>) 

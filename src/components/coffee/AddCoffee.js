@@ -3,7 +3,6 @@ import Rating from "react-rating"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios"
-import { ToastContainer, toast } from 'react-toastify';
 import {Button} from 'react-bootstrap'
 import Map from "../location/Map"
 require('dotenv').config()
@@ -82,12 +81,14 @@ class AddCoffee extends Component{
                             fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
                             fractions={2}
                         />
-                        <input type="file" onChange={this.handleFileChange} /> 
-                        <Button onClick={this.handleFormSubmit}>Add it</Button>
+                        
+                        <input id="upload-file" style={{display:"none"}} type="file" onChange={this.handleFileChange} /> 
+                        <label id="upload-file" for="upload-file">IMAGE</label>
+                        <Button size="lg" variant="light" onClick={this.handleFormSubmit}>Add it</Button>
                     </form>
                 </div>
                 <div className = "added">
-                    {this.state.coffeAdded && <h3>☕ Coffe Added ☕</h3>}
+                    {this.state.coffeAdded && <h3><span role="img" aria-label="coffee">☕</span>Coffe Added <span role="img" aria-label="coffee">☕</span></h3>}
                     <Map coffeeName={this.state.name} liftUpMarkers = {this.handleMarkers} editable={true} markers={[]}/>
                 </div>
             </div>

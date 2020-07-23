@@ -105,6 +105,9 @@ body {
 	align-items: center;
   align-content: center;
 }
+.link-coffee{
+  color:burlywood
+}
 #search{
   width: 80vw;
 	display: flex;
@@ -145,6 +148,15 @@ body {
 	align-items: center;
 	align-content: stretch;
 }
+.card-align{
+  display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+align-content: stretch;
+text-align: center;
+}
 .coffee-cards{
   width: 80vw;
 	display: flex;
@@ -156,6 +168,20 @@ body {
   
 flex-wrap : wrap
 }
+#card-style{
+   width: '16vw' ;
+   height:'52vh' ;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+}
+#size-image{
+  width: 16vw;
+  height: 26vh;
+}
 .upload{
     display: flex;
     flex-direction: column;
@@ -164,7 +190,38 @@ flex-wrap : wrap
     align-items: center;
     align-content: center;
 }
-
+#upload-file{
+  color: #000;
+  background-color: #e0e0e0 ;
+  outline: 0;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+  height: 54px;
+  padding: 1.3rem 2.4rem 1rem 2.4rem;
+  font-size: .94rem;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  margin: .375rem;
+  border: 0;
+  border-radius: .125rem;
+  text-transform: uppercase;
+  line-height: 1.5;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  align-items: flex-start;
+  font: 400 13.3333px Arial;
+  box-sizing: border-box;
+}
+#buttons-side-by-side{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
 .add{
   display: flex;
   flex-direction: column;

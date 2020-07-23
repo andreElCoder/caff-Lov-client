@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect, Link } from 'react-router-dom';
-import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Rating from "react-rating"
+import {Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Map from "../location/Map"
 require('dotenv').config()
@@ -62,10 +63,10 @@ class CoffeeDetails extends Component {
         console.log(this.props.username._id)
         const { params } = this.props.match;
         return(
-            <div>
+            <div className="profile">
                 <h1>{this.state.name}</h1>
                 <p>{this.state.description}</p>
-                <img style={{ width: '20rem' }} src={this.state.url}/>
+                <img style={{ width: '20rem' }} src={this.state.url} alt="coffee"/>
                 <Rating
                         initialRating = {this.state.rating}
                         readonly={true}
@@ -73,23 +74,25 @@ class CoffeeDetails extends Component {
                         fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
                         fractions={2}
                 />
-                {this.props.username &&   
-                    <div>
-                        <button onClick={() => this.deleteCoffee()}>Delete coffee</button>
-                    </div>
-                }
-
-                <div>
-                <Link to={{
-                    pathname: `/edit-coffee/${params.id}`,
-                    state: {
-                        name: this.state.name,
-                        description: this.state.description,
-                        url:this.state.url,
-                        rating:this.state.rating,
-                        markers:this.state.markers
+                <div id="buttons-side-by-side">
+                    {this.props.username &&   
+                        <div>
+                            <Button size="lg" variant="light" onClick={() => this.deleteCoffee()}>Delete coffee</Button>
+                        </div>
                     }
-                    }}>Edit coffee</Link>  
+
+                    <div>
+                    <Link className="link-coffee" to={{
+                        pathname: `/edit-coffee/${params.id}`,
+                        state: {
+                            name: this.state.name,
+                            description: this.state.description,
+                            url:this.state.url,
+                            rating:this.state.rating,
+                            markers:this.state.markers
+                        }
+                        }}> <Button size="lg" variant="light">Edit coffee</Button></Link>  
+                    </div>
                 </div>
                 <div>
                 {this.state.markers && <Map editable={false} markers={this.state.markers}/>} 

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import {Card,Button} from "react-bootstrap"
+import {Card} from "react-bootstrap"
 import { faCoffee, } from '@fortawesome/free-solid-svg-icons'
 import Rating from "react-rating"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,23 +17,25 @@ class CoffeeCard extends Component{
   render(){
     console.log(this.props)
     return(
-    <div>    
-      <Card style={{ width: '16rem' }}>
-        <Card.Img variant="top" src={this.state.url}/>
-        <Card.Body>
+    <div id="card-style">    
+      <Card id="card-style">
+        <Card.Img id="size-image" variant="top" src={this.state.url}/>
+        <Card.Body className="card-align">
           <Card.Title>{this.state.name}</Card.Title>
           <Card.Text>
           {this.state.description}
           </Card.Text>
-          <Link variant="top" to ={`/coffee-detail/${this.state.id}`}>Details</Link>
-        </Card.Body>
-        <Rating
+          <Link className="link-coffee" variant="top" to ={`/coffee-detail/${this.state.id}`}>Details</Link>
+                  
+          </Card.Body><Rating
                         initialRating = {this.state.rating}
                         readonly={true}
                         emptySymbol={<FontAwesomeIcon icon={faCoffee} color="gray"/>}
                         fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
                         fractions={2}
                     />
+
+        
       </Card>
     </div>)
 

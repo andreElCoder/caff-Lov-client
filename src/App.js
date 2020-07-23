@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './components/auth/Login';
@@ -48,7 +47,6 @@ class App extends Component {
 
   render() {
     this.fetchUser();
-    console.log(this.state.loggedInUser)
     return (
       <div className="App">
         <NavbarCoffee setCurrentUser={this.setCurrentUser} loggedInUser={this.state.loggedInUser} />

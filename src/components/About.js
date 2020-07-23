@@ -15,7 +15,7 @@ function About(){
             </section>
             <section>
                 <h2>Be awared</h2>
-                <p>🦟 Possibly there are bugs 🦟, hopefully not on top of your coffee cream 🚫☕ !!! </p>
+                <p><span role="img" aria-label="bug">🦟</span> Possibly there are bugs <span role="img" aria-label="bug">🦟</span>, hopefully not on top of your coffee cream <span role="img" aria-label="forbif">🚫</span><span role="img" aria-label="coffee">☕</span> !!! </p>
             </section>
 
         </div>

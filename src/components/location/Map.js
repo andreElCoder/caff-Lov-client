@@ -1,5 +1,5 @@
-import React, { Component, useDebugValue } from 'react';
-import { GoogleMap, LoadScript , StandaloneSearchBox, Marker, InfoWindow} from '@react-google-maps/api';
+import React, { Component} from 'react';
+import { GoogleMap, LoadScript , Marker, InfoWindow} from '@react-google-maps/api';
 import GoogleSuggest from './GoogleSuggest'
 import mapStyles from "../../mapStyles"
 
@@ -10,9 +10,6 @@ const containerStyle = {
   height: '400px'
 };
 
-const center = {
-
-};
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
@@ -26,6 +23,7 @@ const libraries=["places"]
                   origin: new window.google.maps.Point(0,0),
                   anchor: new window.google.maps.Point(15,15)
                 }}
+<div>Icons used as Markers, made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 */
 
 class Map extends Component{
@@ -153,7 +151,7 @@ addMarkerFromSearch = (marker) =>{
     </GoogleSuggest>}
           <></>
         </GoogleMap>
-        <div>Icons used as Markers, made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        
         </LoadScript>
       </div>
     )

@@ -5,6 +5,7 @@ import Rating from "react-rating"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Button} from "react-bootstrap"
 import Map from "../location/Map"
+
 require('dotenv').config()
 class Editcoffee extends Component {
 
@@ -88,10 +89,10 @@ class Editcoffee extends Component {
                         emptySymbol={<FontAwesomeIcon icon={faCoffee} color="gray"/>}
                         fullSymbol={<FontAwesomeIcon  color="brown" icon={faCoffee} />}
                     />
-                    <Button onClick={this.handleFormSubmit}>Update it</Button>
+                    <Button size="lg" variant="light" onClick={this.handleFormSubmit}>Update it</Button>
                     
                     {this.state.markers && <Map liftUpMarkers = {this.handleMarkers} editable={true} markers={this.state.markers}/>} 
-                    {this.state.coffeEddited && <h3>☕ Coffee Edited ☕</h3>}
+                    {this.state.coffeEddited && <h3><span role="img" aria-label="coffee">☕</span>Coffee Edited<span role="img" aria-label="coffee">☕</span></h3>}
                 </form>
             </div>
         )
