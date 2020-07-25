@@ -18,7 +18,7 @@ class NavbarCoffee extends Component {
         
         if (this.props.loggedInUser) {
             return (<div>
-                    <Navbar className="nav-bar-color" >
+                    <Navbar style={{position:"relative", display:"flex"}} className="nav-bar-color" >
                         <Navbar.Brand href="/">
                         <img
                             alt=""
@@ -42,7 +42,7 @@ class NavbarCoffee extends Component {
             </div>)
         } else {
             return (<div>
-                <Navbar className="nav-bar-color ">
+                <Navbar style={{position:"relative", display:"flex"}} className="nav-bar-color ">
                         <Navbar.Brand href="/">
                         <img
                             alt=""
