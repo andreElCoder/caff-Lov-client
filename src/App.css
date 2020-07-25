@@ -240,7 +240,7 @@ flex-wrap : wrap
 
 }
 
-.nav-2 {
+.nav {
   position: relative;
   display:flex
 }
