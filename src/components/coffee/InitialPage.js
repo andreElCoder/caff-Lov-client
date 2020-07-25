@@ -22,7 +22,7 @@ function InitialPage(){
                     />
 
                     <Carousel.Caption>
-                    <h3>Coffee may reduce the risk of type 2 diabetes</h3>
+                    <h3>Search for a particular coffee</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item className="carousel-item">
@@ -32,7 +32,7 @@ function InitialPage(){
                     />
 
                     <Carousel.Caption>
-                    <h3>Coffee can aid in weight loss </h3>
+                    <h3>Where you can find the best coffees in the world</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>

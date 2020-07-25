@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 class Login extends Component {
     state = {
         username: '',
-        password: ''
+        password: '',
+        error:null
     }
     service = new AuthService();
 
@@ -26,7 +27,16 @@ class Login extends Component {
                 this.setState({ username: '', password: ''});
                 this.props.history.push('/profile');
             })
+            .catch(error => {
+                console.log(error)
+                console.log(error.response.data)
+                this.setState({error:error.response.data.message})
+                setTimeout(()=>this.setState({error:null}),5000)
+            })
+    }
 
+    resetError = () =>{
+        setTimeout(this.setState({error:null}),5000)
     }
 
     render() {
@@ -36,9 +46,10 @@ class Login extends Component {
                     <label>Username:</label>
                     <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
                     <label>Password:</label>
-                    <input  name="password" value={this.state.password} onChange={this.handleChange} />
+                    <input  type = "password" name="password" value={this.state.password} onChange={this.handleChange} />
                     <input type="submit" value="Login" />
                 </form>
+                {this.state.error && <h6>{this.state.error}</h6>}
                 <p>Don't have account? 
                     <Link className="link-coffee" to={"/signup"}> Signup</Link>
                 </p>
