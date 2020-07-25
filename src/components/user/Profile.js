@@ -53,7 +53,7 @@ class Profile extends Component{
     componentDidMount(){
 
         axios
-        .get(`${process.env.REACT_APP_LOCAL_URL}/api/username/${this.state.usernameId}/coffees`)
+        .get(`${process.env.REACT_APP_HEROKU_URL}/api/username/${this.state.usernameId}/coffees`)
         .then(response =>{
             console.log(response.data)
             let index=this.state.i
