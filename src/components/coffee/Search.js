@@ -16,7 +16,7 @@ class Search extends Component{
         this.setState({search: this.props.location.state.state})
         console.log(this.state.search)
         console.log(this.props.location.state.state)
-        axios.get(`${process.env.REACT_APP_LOCAL_URL}/api/search-coffee/${this.props.location.state.state}`)
+        axios.get(`${process.env.REACT_APP_HEROKU_URL}/api/search-coffee/${this.props.location.state.state}`)
         .then(coffees =>{
             console.log(coffees.data)
             console.log(this.state)

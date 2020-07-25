@@ -22,7 +22,7 @@ class Editcoffee extends Component {
     componentDidMount() {
         const { params } = this.props.match;
         axios
-        .get(`${process.env.REACT_APP_LOCAL_URL}/api/coffee-detail/${params.id}`)
+        .get(`${process.env.REACT_APP_HEROKU_URL}/api/coffee-detail/${params.id}`)
         .then(responseFromAPI =>{
             console.log(responseFromAPI)
             const{name,description,url,rating,markers} = responseFromAPI.data
@@ -49,14 +49,14 @@ class Editcoffee extends Component {
         event.preventDefault();
         const uploadData = new FormData()
         uploadData.append("url", this.state.file);
-        axios.post(`${process.env.REACT_APP_LOCAL_URL}/api/upload-coffee`, uploadData)
+        axios.post(`${process.env.REACT_APP_HEROKU_URL}/api/upload-coffee`, uploadData)
         .then((responsefromUpload)=>{
             const {name,description,rating,markers} = this.state
             const usernameId = this.props.usernameId
             console.log(usernameId)
             console.log(name)
             const url=responsefromUpload.data.url
-            axios.put(`${process.env.REACT_APP_LOCAL_URL}/api/edit-coffee/${params.id}`, {name,description,url,rating,markers})
+            axios.put(`${process.env.REACT_APP_HEROKU_URL}/api/edit-coffee/${params.id}`, {name,description,url,rating,markers})
             .then((responsefromEdit) => { 
                 //1. Lift the state up and push new Coffee into the state that lives on Coffees
                 //2. Call the api to get all projects again

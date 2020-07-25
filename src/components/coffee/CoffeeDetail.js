@@ -24,7 +24,7 @@ class CoffeeDetails extends Component {
     getSinglecoffee = () => {
         //id of the coffee is on the url /coffee-detail/<id>
         const { params } = this.props.match;
-        axios.get(`${process.env.REACT_APP_LOCAL_URL}/api/coffee-detail/${params.id}`)
+        axios.get(`${process.env.REACT_APP_HEROKU_URL}/api/coffee-detail/${params.id}`)
             .then(responseFromAPI => {
                 const coffee = responseFromAPI.data;
                 console.log('coffee found', coffee);
@@ -49,7 +49,7 @@ class CoffeeDetails extends Component {
 
     deleteCoffee = () => {
         const { params } = this.props.match;
-        axios.delete(`${process.env.REACT_APP_LOCAL_URL}/api/username/${this.props.username._id}/delete-coffee/${params.id}`)
+        axios.delete(`${process.env.REACT_APP_HEROKU_URL}/api/username/${this.props.username._id}/delete-coffee/${params.id}`)
             .then(() => {
                 //return <Redirect to='/coffees' />
                 this.props.history.push('/profile');

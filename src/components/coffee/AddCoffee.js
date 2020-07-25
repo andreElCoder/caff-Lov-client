@@ -40,14 +40,14 @@ class AddCoffee extends Component{
         event.preventDefault();
         const uploadData = new FormData()
         uploadData.append("url", this.state.file);
-        axios.post(`${process.env.REACT_APP_LOCAL_URL}/api/upload-coffee`, uploadData)
+        axios.post(`${process.env.REACT_APP_HEROKU_URL}/api/upload-coffee`, uploadData)
         .then((responsefromUpload)=>{
             const {name,description,rating,markers} = this.state
             const usernameId = this.props.usernameId
             console.log(usernameId)
             console.log(name)
             const url=responsefromUpload.data.url
-            axios.post(`${process.env.REACT_APP_LOCAL_URL}/api/add-coffee`, {name,description,url,rating,markers,usernameId})
+            axios.post(`${process.env.REACT_APP_HEROKU_URL}/api/add-coffee`, {name,description,url,rating,markers,usernameId})
             .then((responsefromAdd) => { 
                 //1. Lift the state up and push new Coffee into the state that lives on Coffees
                 //2. Call the api to get all projects again
