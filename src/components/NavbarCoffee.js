@@ -17,7 +17,7 @@ class NavbarCoffee extends Component {
     render() { 
         
         if (this.props.loggedInUser) {
-            return (<div className="nav-2">
+            return (<div>
                     <Navbar className="nav-bar-color" >
                         <Navbar.Brand href="/">
                         <img
