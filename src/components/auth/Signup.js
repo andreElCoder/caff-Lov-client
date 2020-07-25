@@ -42,7 +42,7 @@ class Signup extends Component {
                 <label>Username:</label>
                 <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
                 <label>Password:</label>
-                <input name="password" value={this.state.password} onChange={this.handleChange} />
+                <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                 <input type="submit" value="Signup" />
             </form>
             {this.state.error && <h6>{this.state.error}</h6>}

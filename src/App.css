@@ -239,3 +239,8 @@ flex-wrap : wrap
 	align-content: stretch;
 
 }
+
+.nav {
+  position: relative;
+  display:flex
+}
