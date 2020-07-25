@@ -75,7 +75,7 @@ class CoffeeDetails extends Component {
                         fractions={2}
                 />
                 <div id="buttons-side-by-side">
-                    {this.props.username &&   
+                    {this.props.username._id===this.state._id &&   
                         <div>
                             <Button size="lg" variant="light" onClick={() => this.deleteCoffee()}>Delete coffee</Button>
                         </div>
